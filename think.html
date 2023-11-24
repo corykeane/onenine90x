@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("sunset.webp");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+
+<div class="bg" id="background"></div>
+
+
+<script>
+  function getRandomBackground() {
+    var images = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png'];
+    var index = Math.floor(Math.random() * images.length);
+    var selectedImage = images[index];
+    return selectedImage;
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var bgDiv = document.getElementById('background');
+    bgDiv.style.backgroundImage = 'url(' + getRandomBackground() + ')';
+  });
+</script>
+</body>
+</html>
