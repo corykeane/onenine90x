@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div id="countdown"></div>
+    <div id="targetTime"></div>
+    <script>
+        function countdown(targetDateTime, targetTimezone) {
+            // Convert to ISO 8601 format
+            const targetDateISO = new Date(targetDateTime).toISOString();
+            const targetDate = new Date(targetDateISO);
+
+            // Adjust for timezone (assuming input like 'America/Chicago')
+            const timezoneOffset = new Date().getTimezoneOffset() * 60000; // Offset in milliseconds
+            const timezoneDate = new Date(targetDate.getTime() - timezoneOffset);
+            
+            const countdownElement = document.getElementById('countdown');
+
+            const updateCountdown = () => {
+                const now = new Date();
+                const difference = timezoneDate - now;
+
+                if (difference <= 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "Time's up!";
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+            };
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+
+            // Display target time in user's local timezone
+            const userLocalTime = new Intl.DateTimeFormat('en-US', { 
+                dateStyle: 'full', 
+                timeStyle: 'long', 
+                timeZoneName: 'long',
+                timeZone: targetTimezone 
+            }).format(targetDate);
+            
+            document.getElementById('targetTime').innerText = `Target Time (Your Timezone): ${userLocalTime}`;
+        }
+
+        // Example usage
+        countdown('2024-01-26T18:00:00', 'America/Chicago');
+    </script>
+</body>
+</html>
