@@ -148,6 +148,9 @@
     <h1 class="text-dark">Follow OneNine</h1>
     <br>
     <p class="lead">
+      Next Stream is <span style="font-weight:bold;" id="nextStream"></span>
+    </p>
+    <p class="lead">
       <a href="https://www.youtube.com/@onenine90x" class="btn btn-lg btn-light fw-bold bg-white" style="border:0;background-color:#d50000 !important; color:white">YouTube</a>
       <br><br>
       <a href="https://www.twitch.tv/onenine90x" class="btn btn-lg btn-light fw-bold border-white bg-white" style="border:0;background-color:#4e0097 !important; color:white">Twitch</a>
@@ -176,6 +179,31 @@
   </footer>
 </div>
 <script src="./assets/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+function formatTimestamp(unixTimestamp) {
+    const currentDate = moment();
+    const date = moment.unix(unixTimestamp);
+    const day = date.format('dddd');
+    const month = date.format('MMMM');
+    const dayOfMonth = date.format('Do'); // Includes the suffix (st, nd, rd, th)
+    const time = date.format('h:mma');
+
+    if (currentDate.isSameOrAfter(date)) {
+        return "RIGHT NOW!!!";
+    }
+
+    return `${day}, ${month} ${dayOfMonth} at ${time}`;
+}
+
+const unixTimestamp = 1717948800; // Example timestamp
+
+var spanElement = document.getElementById('nextStream');
+spanElement.textContent = formatTimestamp(unixTimestamp);
+
+// console.log(formatTimestamp(unixTimestamp));
+</script>
 
     
 
