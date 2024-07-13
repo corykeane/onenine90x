@@ -215,21 +215,14 @@ function formatTimestamp(unixTimestamp) {
 function countdown() {
   const now = moment();
   const target = moment.unix(unixTimestamp);
-
-  
-
   const duration = moment.duration(target.diff(now));
-
   const weeks = Math.floor(duration.asWeeks());
   const days = duration.days();
   const hours = duration.hours();
   const minutes = duration.minutes();
   const seconds = duration.seconds();
 
- 
-
   let result = '';
-  // if (weeks > 0) result += `${weeks} week${weeks > 1 ? 's' : ''}, `;
   if (days > 0) result += `${days} day${days > 1 ? 's' : ''}, `;
   if (hours > 0) result += `${hours} hour${hours > 1 ? 's' : ''}, `;
   if (minutes > 0) result += `${minutes} minute${minutes > 1 ? 's' : ''}, `;
@@ -245,14 +238,17 @@ function countdown() {
 
 
 var spanElement = document.getElementById('nextStream');
-spanElement.textContent = formatTimestamp(unixTimestamp);
+// #### Uncomment this to re-enable next stream date and time #######
+// spanElement.textContent = formatTimestamp(unixTimestamp);
+// #### Comment this to remove TBD ########
+spanElement.textContent = 'TBD';
 
-var countdownElement = document.getElementById('countdown');
-// countdownElement.textContent = countdown(unixTimestamp);
-countdown();
-setInterval(countdown, 1000);
 
-// console.log(formatTimestamp(unixTimestamp));
+// #### Uncomment the below two lines to re-enable countdown #######
+// var countdownElement = document.getElementById('countdown');
+// countdown();
+// setInterval(countdown, 1000);
+
 </script>
 
     
