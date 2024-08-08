@@ -155,7 +155,7 @@
       <a href="/art" target="_blank" class="btn btn-lg btn-light fw-bold bg-white" style="border:0;background-color:#fff !important; color:black">ART CONTEST</a>
     </p>
 
-    <p class="lead d-none">
+    <p class="lead">
       Next Stream is <span style="font-weight:bold;" id="nextStream"></span> <br><span style="font-weight:bold;" id="countdown"></span>
     </p>
 
@@ -198,7 +198,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
-  const unixTimestamp = 1720882800; // Example timestamp
+  const unixTimestamp = 1723851000; // Example timestamp
 
 
 function formatTimestamp(unixTimestamp) {
@@ -243,15 +243,15 @@ function countdown() {
 
 var spanElement = document.getElementById('nextStream');
 // #### Uncomment this to re-enable next stream date and time #######
-// spanElement.textContent = formatTimestamp(unixTimestamp);
+spanElement.textContent = formatTimestamp(unixTimestamp);
 // #### Comment this to remove TBD ########
-spanElement.textContent = 'TBD';
+// spanElement.textContent = 'TBD';
 
 
 // #### Uncomment the below two lines to re-enable countdown #######
-// var countdownElement = document.getElementById('countdown');
-// countdown();
-// setInterval(countdown, 1000);
+var countdownElement = document.getElementById('countdown');
+countdown();
+setInterval(countdown, 1000);
 
 </script>
 
