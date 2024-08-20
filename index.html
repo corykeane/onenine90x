@@ -198,7 +198,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
-  const unixTimestamp = 1723851000; // Example timestamp
+  // Change timestamp to false if TBD
+  const unixTimestamp = false; // Example timestamp
 
 
 function formatTimestamp(unixTimestamp) {
@@ -239,19 +240,20 @@ function countdown() {
   countdownElement.textContent = result;
 }
 
-
-
 var spanElement = document.getElementById('nextStream');
-// #### Uncomment this to re-enable next stream date and time #######
-spanElement.textContent = formatTimestamp(unixTimestamp);
-// #### Comment this to remove TBD ########
-// spanElement.textContent = 'TBD';
+
+if (unixTimestamp === false) {
+  spanElement.textContent = 'TBD';
+} else {
+  spanElement.textContent = formatTimestamp(unixTimestamp);
+  var countdownElement = document.getElementById('countdown');
+  countdown();
+  setInterval(countdown, 1000);
+}
 
 
 // #### Uncomment the below two lines to re-enable countdown #######
-var countdownElement = document.getElementById('countdown');
-countdown();
-setInterval(countdown, 1000);
+
 
 </script>
 
