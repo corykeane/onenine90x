@@ -155,7 +155,7 @@
       <a href="/art" target="_blank" class="btn btn-lg btn-light fw-bold bg-white" style="border:0;background-color:#fff !important; color:black">ART CONTEST</a>
     </p>
 
-    <p class="lead">
+    <p class="lead text-dark" id="nextStreamP">
       Next Stream is <span style="font-weight:bold;" id="nextStream"></span> <br><span style="font-weight:bold;" id="countdown"></span>
     </p>
 
@@ -242,8 +242,10 @@ function countdown() {
 }
 
 var spanElement = document.getElementById('nextStream');
+var nextStreamP = document.getElementById('nextStreamP');
 
 if (unixTimestamp === false) {
+  nextStreamP.classList.add('d-none');
   spanElement.textContent = 'TBD';
 } else {
   spanElement.textContent = formatTimestamp(unixTimestamp);
